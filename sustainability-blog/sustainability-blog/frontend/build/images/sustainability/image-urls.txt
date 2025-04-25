@@ -1,0 +1,10 @@
+hero-sustainability.jpg: https://cdn.pixabay.com/photo/2019/07/08/07/22/water-4324711_1280.jpg
+eco-living.jpg: https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_1280.jpg
+renewable-energy.jpg: https://cdn.pixabay.com/photo/2016/11/29/13/26/alternative-1869902_1280.jpg 
+sustainable-living.jpg: https://cdn.pixabay.com/photo/2016/11/22/19/25/man-1850181_1280.jpg
+
+Image Attributions (Pixabay License):
+1. Water drops on leaf by Bessi
+2. Green forest sunrise by Free-Photos
+3. Wind turbines by klimkin
+4. Person planting by Free-Photos
