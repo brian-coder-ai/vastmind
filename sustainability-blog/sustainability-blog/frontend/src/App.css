@@ -1,0 +1,286 @@
+/* Main App Styles */
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom color scheme for sustainability theme */
+:root {
+  /* Light theme colors */
+  --sustainability-green: #2ecc71;
+  --sustainability-dark-green: #27ae60;
+  --sustainability-light-green: #a8e6cf;
+  --sustainability-brown: #8b5e3c;
+  --sustainability-beige: #f5f0e1;
+  
+  /* Base theme variables */
+  --background-primary: #ffffff;
+  --background-secondary: #f8f9fa;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --card-background: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.125);
+  --link-color: var(--sustainability-dark-green);
+  --link-hover-color: var(--sustainability-green);
+}
+
+[data-theme='dark'] {
+  --background-primary: #1a1a1a;
+  --background-secondary: #2d2d2d;
+  --text-primary: #e1e1e1;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --card-background: #2d2d2d;
+  --card-border: rgba(255, 255, 255, 0.125);
+  --link-color: var(--sustainability-light-green);
+  --link-hover-color: var(--sustainability-green);
+}
+
+body {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Blog content styles */
+.blog-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: var(--sustainability-dark-green);
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.blog-content p {
+  margin-bottom: 1.5em;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--sustainability-light-green);
+  background-color: var(--background-secondary);
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  margin-bottom: 0.5em;
+}
+
+/* Card hover effects */
+.card {
+  background-color: var(--card-background);
+  border-color: var(--card-border);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer {
+  background-color: var(--background-secondary);
+  border-top-color: var(--border-color);
+}
+
+/* Custom button styles */
+.btn-success {
+  background-color: var(--sustainability-green);
+  border-color: var(--sustainability-green);
+}
+
+.btn-success:hover {
+  background-color: var(--sustainability-dark-green);
+  border-color: var(--sustainability-dark-green);
+}
+
+/* Hero section styles */
+.hero-section {
+  background-color: var(--sustainability-beige);
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+/* Newsletter form styles */
+.newsletter-form {
+  background-color: var(--sustainability-light-green);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+/* Footer styles */
+footer {
+  background-color: var(--background-secondary);
+  padding: 2rem 0;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Keyboard shortcuts styles */
+kbd {
+  display: inline-block;
+  padding: 3px 6px;
+  font-family: var(--bs-font-monospace);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 1px var(--card-border);
+}
+
+.shortcuts-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--sustainability-light-green);
+  color: var(--sustainability-dark-green);
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.shortcuts-button:hover {
+  transform: scale(1.1);
+  background-color: var(--sustainability-dark-green);
+  color: white;
+}
+
+.shortcuts-modal .table {
+  margin-bottom: 0;
+}
+
+.shortcuts-modal .modal-title {
+  color: var(--sustainability-dark-green);
+}
+
+/* Focus styles for better accessibility */
+:focus-visible {
+  outline: 3px solid var(--sustainability-green);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  border: 2px solid var(--sustainability-dark-green);
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+/* Navigation and footer */
+.navbar {
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  background-color: var(--background-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--background-primary);
+  border-color: var(--sustainability-green);
+  color: var(--text-primary);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  color: var(--sustainability-green);
+}
+
+/* Alerts */
+.alert-danger {
+  background-color: #dc354522;
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+/* Dark mode specific image adjustments */
+[data-theme='dark'] img {
+  filter: brightness(0.9);
+}

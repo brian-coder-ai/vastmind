@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "framer-motion": "^12.9.1",
+    "web-vitals": "^4.2.4"
+  }
+}
