@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+hwz-&2a@j9c14
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['34.170.54.83', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['34.170.54.83', 'localhost', '127.0.0.1','vastmind.blog','www.vastmind.blog']
 
 # Webhook configuration
 WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', 'your-webhook-secret-key-here')
