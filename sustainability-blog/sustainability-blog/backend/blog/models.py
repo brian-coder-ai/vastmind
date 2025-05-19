@@ -36,7 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-    featured_image = models.ImageField(upload_to='posts/%Y/%m/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
     excerpt = models.TextField(max_length=500, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -59,3 +59,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class ArticleImage(models.Model):
+    post = models.ForeignKey(Post, related_name='images', on_delete=models.CASCADE)
+    image_url = models.URLField()
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.post.title} - {self.image_url}"
