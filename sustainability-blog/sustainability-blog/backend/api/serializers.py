@@ -26,7 +26,7 @@ class PostListSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'title', 'slug', 'excerpt', 'image_url', 
                  'author', 'category', 'tags', 'is_featured', 'status', 
-                 'created_at', 'published_at']
+                 'created_at', 'published_at', 'workflow_id']
 
 class PostDetailSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
@@ -44,7 +44,8 @@ class PostDetailSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'title', 'slug', 'content', 'excerpt', 'image_url',
                  'author', 'category', 'category_id', 'tags', 'tag_ids', 
-                 'is_featured', 'status', 'created_at', 'updated_at', 'published_at']
+                 'is_featured', 'status', 'created_at', 'updated_at', 'published_at',
+                 'workflow_id']
 
     def create(self, validated_data):
         tag_ids = validated_data.pop('tag_ids', [])
