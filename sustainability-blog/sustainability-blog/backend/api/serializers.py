@@ -24,7 +24,7 @@ class PostListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'slug', 'excerpt', 'featured_image', 
+        fields = ['id', 'title', 'slug', 'excerpt', 'image_url', 
                  'author', 'category', 'tags', 'is_featured', 'status', 
                  'created_at', 'published_at']
 
@@ -33,6 +33,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
     category_id = serializers.IntegerField(write_only=True)
+    slug = serializers.SlugField(read_only=True)  # Make slug read-only
     tag_ids = serializers.ListField(
         child=serializers.IntegerField(),
         write_only=True,
@@ -41,7 +42,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'slug', 'content', 'excerpt', 'featured_image',
+        fields = ['id', 'title', 'slug', 'content', 'excerpt', 'image_url',
                  'author', 'category', 'category_id', 'tags', 'tag_ids', 
                  'is_featured', 'status', 'created_at', 'updated_at', 'published_at']
 
