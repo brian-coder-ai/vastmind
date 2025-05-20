@@ -42,6 +42,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
+    workflow_id = models.CharField(max_length=100, blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     is_archived = models.BooleanField(default=False)
     status = models.CharField(
