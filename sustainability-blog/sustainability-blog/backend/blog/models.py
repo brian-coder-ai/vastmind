@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+import secrets
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -52,9 +53,14 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
 
+    def generate_unique_slug(self):
+        base_slug = slugify(self.title)
+        random_hex = secrets.token_hex(4)  # 8 characters long
+        return f"{base_slug}-{random_hex}"
+
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = self.generate_unique_slug()
         super().save(*args, **kwargs)
 
     def __str__(self):
