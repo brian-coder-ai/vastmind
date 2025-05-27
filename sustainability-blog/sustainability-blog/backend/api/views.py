@@ -47,7 +47,22 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostListSerializer
         return PostDetailSerializer
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        return context
+
     def perform_create(self, serializer):
         if serializer.validated_data.get('status') == 'published':
             serializer.validated_data['published_at'] = timezone.now()
         serializer.save(author=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        if response.status_code == 201:  # Created
+            post_url = response.data.get('url')
+            response.data = {
+                'url': post_url,
+                'message': 'Post created successfully',
+                'post': response.data
+            }
+        return response
