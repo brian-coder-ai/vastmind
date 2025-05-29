@@ -23,6 +23,7 @@ class TagViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+    authentication_classes = [TokenAuthentication] 
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'content', 'category__name', 'tags__name']
     ordering_fields = ['created_at', 'published_at', 'title']
