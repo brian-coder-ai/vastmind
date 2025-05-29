@@ -1,29 +1,18 @@
-from django.shortcuts import render
 from rest_framework import viewsets, filters
+from rest_framework.authentication import TokenAuthentication # <--- Import this
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from django.utils import timezone
-from blog.models import Category, Tag, Post
-from .serializers import (
-    CategorySerializer, TagSerializer,
-    PostListSerializer, PostDetailSerializer
-)
-
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    lookup_field = 'slug'
-
-class TagViewSet(viewsets.ModelViewSet):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    lookup_field = 'slug'
+from .models import Post
+# Assuming your serializers are in serializers.py relative to views.py
+from .serializers import PostListSerializer, PostDetailSerializer 
+from django.utils import timezone # Add this import if not present for timezone.now()
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    
+    # Add this line
     authentication_classes = [TokenAuthentication] 
+    
+    permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'content', 'category__name', 'tags__name']
     ordering_fields = ['created_at', 'published_at', 'title']
