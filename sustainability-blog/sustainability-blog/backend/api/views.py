@@ -1,15 +1,30 @@
+from django.shortcuts import render
 from rest_framework import viewsets, filters
-from rest_framework.authentication import TokenAuthentication # <--- Import this
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Post
-# Assuming your serializers are in serializers.py relative to views.py
-from .serializers import PostListSerializer, PostDetailSerializer 
-from django.utils import timezone # Add this import if not present for timezone.now()
+from rest_framework.authentication import TokenAuthentication # <--- NEW IMPORT
+from django.utils import timezone
+from blog.models import Category, Tag, Post
+from .serializers import (
+    CategorySerializer, TagSerializer,
+    PostListSerializer, PostDetailSerializer
+)
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    lookup_field = 'slug'
+
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    lookup_field = 'slug'
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     
-    # Add this line
+    # ADDED: This tells DRF to use TokenAuthentication for this ViewSet
     authentication_classes = [TokenAuthentication] 
     
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -42,17 +57,21 @@ class PostViewSet(viewsets.ModelViewSet):
         return context
 
     def perform_create(self, serializer):
+        # Ensure 'published_at' is set if status is 'published'
         if serializer.validated_data.get('status') == 'published':
             serializer.validated_data['published_at'] = timezone.now()
+        
+        # Assign the authenticated user as the author
         serializer.save(author=self.request.user)
 
     def create(self, request, *args, **kwargs):
+        # Custom response formatting for the create action
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:  # Created
-            post_url = response.data.get('url')
+            post_url = response.data.get('url') # Assuming PostDetailSerializer provides a 'url' field
             response.data = {
                 'url': post_url,
                 'message': 'Post created successfully',
-                'post': response.data
+                'post': response.data # Include the full post data in a nested 'post' key
             }
         return response
